@@ -4,14 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Einträge</title>
+    <style>
+      /* Popup-Styles */
+      .popup {
+        display: none; /* Standardmäßig versteckt */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        background-color: white;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        padding: 20px;
+        z-index: 1000;
+      }
+
+      /* Overlay-Styles */
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
+    </style>
   </head>
   <body>
-    <button>logout</button>
+    <button>Logout</button>
     <button>Darkmode</button>
 
     <h2>Einträge</h2>
 
-    <label for="filter">suche</label>
+    <label for="filter">Suche</label>
     <input type="text" id="search" placeholder="search..." />
 
     <select name="typeFilter" id="typeFilter">
@@ -24,7 +52,7 @@
       <option value="userName2">user2</option>
     </select>
 
-    <button>Neuer Eintrag</button>
+    <button id="newEntryBtn">Neuer Eintrag</button>
 
     <table border="1" width="100%">
       <tr>
@@ -45,15 +73,93 @@
         <td></td>
         <td></td>
       </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
     </table>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Popup-Formular -->
+    <div class="popup" id="popup">
+      <h2>Neuer Eintrag</h2>
+      <form id="entryForm">
+        <label for="beschreibung">Bezeichnung:</label><br>
+        <input type="text" id="beschreibung" name="beschreibung" required><br><br>
+
+        <label for="betrag">Betrag:</label><br>
+        <input type="number" id="betrag" name="betrag" required><br><br>
+
+        <label for="typ">Typ:</label><br>
+        <select id="typ" name="typ">
+          <option value="Eingabe">Eingabe</option>
+          <option value="Ausgabe">Ausgabe</option>
+        </select><br><br>
+
+        <label for="datum">Datum:</label><br>
+        <input type="date" id="datum" name="datum" required><br><br>
+
+        <label for="benutzer">Benutzer:</label><br>
+        <input type="text" id="benutzer" name="benutzer" required><br><br>
+
+        <label for="kategorie">Kategorie:</label><br>
+        <input type="text" id="kategorie" name="kategorie" required><br><br>
+
+        <button type="submit">Speichern</button>
+        <button type="button" id="cancelBtn">Abbrechen</button>
+      </form>
+    </div>
+
+    <script>
+      // Elemente referenzieren
+      const newEntryBtn = document.getElementById('newEntryBtn');
+      const popup = document.getElementById('popup');
+      const overlay = document.getElementById('overlay');
+      const cancelBtn = document.getElementById('cancelBtn');
+      const entryForm = document.getElementById('entryForm');
+      const table = document.querySelector('table');
+
+      // Popup öffnen
+      newEntryBtn.addEventListener('click', () => {
+        popup.style.display = 'block';
+        overlay.style.display = 'block';
+      });
+
+      // Popup schließen
+      const closePopup = () => {
+        popup.style.display = 'none';
+        overlay.style.display = 'none';
+        entryForm.reset(); // Formular zurücksetzen
+      };
+
+      cancelBtn.addEventListener('click', closePopup);
+      overlay.addEventListener('click', closePopup);
+
+      // Daten verarbeiten und neuen Eintrag speichern
+      entryForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Verhindert das Neuladen der Seite
+
+        // Daten aus dem Formular erfassen
+        const beschreibung = document.getElementById('beschreibung').value;
+        const betrag = document.getElementById('betrag').value;
+        const typ = document.getElementById('typ').value;
+        const datum = document.getElementById('datum').value;
+        const benutzer = document.getElementById('benutzer').value;
+        const kategorie = document.getElementById('kategorie').value;
+
+        // Neuen Tabelleneintrag erstellen
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+          <td>Auto-ID</td>
+          <td>${beschreibung}</td>
+          <td>${betrag}</td>
+          <td>${typ}</td>
+          <td>${datum}</td>
+          <td>${benutzer}</td>
+          <td>${kategorie}</td>
+        `;
+
+        // Popup schließen
+        closePopup();
+      });
+    </script>
   </body>
 </html>
