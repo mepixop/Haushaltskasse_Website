@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #cecdcb;
+  background-color: #fce8c2;
   color: #000;
 }
 
@@ -178,3 +178,36 @@ td {
   color: white;
   border-color: #555;
 }
+
+.input-group-text {
+    background-color: transparent; /* Hintergrund des Icon-Containers */
+    border: none; /* Keine Rahmen */
+    color: inherit; /* Farbe aus dem Standard-Stil übernehmen */
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none; /* Standardmäßig ausgeblendet */
+    z-index: 999;
+  }
+  
+  /* Popup */
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none; /* Standardmäßig ausgeblendet */
+    z-index: 1000;
+    width: 400px; /* Breite anpassen */
+    max-width: 90%; /* Responsiv */
+  }
+   
