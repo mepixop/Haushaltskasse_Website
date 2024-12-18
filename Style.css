@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #fce8c2;
+  background-color: #efe7da;
   color: #000;
 }
 
@@ -184,6 +184,12 @@ td {
   border: none; /* Keine Rahmen */
   color: inherit; /* Farbe aus dem Standard-Stil übernehmen */
 }
+
+.input-group-text i {
+    color:  #333;
+    font-size: 1.2rem; /* Größe des Icons */
+  }  
+  
 .overlay {
   position: fixed;
   top: 0;
@@ -210,3 +216,4 @@ td {
   width: 400px; /* Breite anpassen */
   max-width: 90%; /* Responsiv */
 }
+
