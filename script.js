@@ -181,3 +181,17 @@ overlay.addEventListener("click", () => {
 cancelBtn.addEventListener("click", () => {
   closePopup();
 });
+
+const toggleButton = document.getElementById("darkmode-toggle");
+const body = document.body;
+
+toggleButton.addEventListener("click", () => {
+  body.classList.toggle("darkmode"); // Darkmode Klasse für das Body-Element umschalten
+
+  // Button-Text anpassen
+  if (body.classList.contains("darkmode")) {
+    toggleButton.textContent = "LIGHTMODE";
+  } else {
+    toggleButton.textContent = "DARKMODE";
+  }
+});
