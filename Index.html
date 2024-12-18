@@ -18,19 +18,42 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <div>
-      <button type="button" class="btn btn-primary">Primary</button>
-      <button class="darkmode">DARKMODE</button>
+
+    <button id="darkmode-toggle">DARKMODE</button>
+
+    <div class = "container">
+      
       <h1>Haushaltskasse</h1>
-      <form>
+
+      <div class="input-box">
         <input id="" type="email" placeholder="E-MAIL" required />
         <input id="" type="password" placeholder="PASSWORT" required />
         <button type="submit">ANMELDEN</button>
-      </form>
+      </div>
+
       <div class="link-untertext">
         WENN KEIN KONTO, DANN HIER
         <a href="register.html">REGISTRIEREN</a>
       </div>
     </div>
+
+    <script>
+        const toggleButton = document.getElementById('darkmode-toggle');
+const body = document.body;
+
+toggleButton.addEventListener('click', () => {
+    body.classList.toggle('darkmode'); // Darkmode Klasse für das Body-Element umschalten
+
+    // Button-Text anpassen
+    if (body.classList.contains('darkmode')) {
+        toggleButton.textContent = 'LIGHTMODE';
+    } else {
+        toggleButton.textContent = 'DARKMODE';
+    }
+});
+
+    </script>
+    
+
   </body>
 </html>

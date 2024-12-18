@@ -18,8 +18,11 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <div>
-      <button class="darkmode">DARKMODE</button>
+
+    <button id="darkmode-toggle" class="darkmode">DARKMODE</button>
+
+    <div class = "container">
+       
       <h1>Haushaltskasse</h1>
       <form>
         <input id="" type="name" placeholder="NAME" required />
@@ -32,5 +35,21 @@
         <a href="Index.html">ANMELDEN</a>
       </div>
     </div>
+
+    <script>
+        const toggleButton = document.getElementById('darkmode-toggle');
+const body = document.body;
+
+toggleButton.addEventListener('click', () => {
+    body.classList.toggle('darkmode'); // Darkmode Klasse für das Body-Element umschalten
+
+    // Button-Text anpassen
+    if (body.classList.contains('darkmode')) {
+        toggleButton.textContent = 'LIGHTMODE';
+    } else {
+        toggleButton.textContent = 'DARKMODE';
+    }
+});
+    </script>
   </body>
 </html>
