@@ -94,13 +94,13 @@ var sendEntry = () => {
 
 //fill data into table
 var populateTable = (entries) => {
-  const table = $("#dataTable");
+  const table = $("#dataTable tbody");
   table.find("tr:gt(0)").remove();
   for (const id in entries) {
     if (entries.hasOwnProperty(id)) {
       const entry = entries[id];
       const row = `
-                      <tr data-id="${id}">
+                      <tr data-id="${id}" >
                         <td>${entry.description || "N/A"}</td>
                         <td>${entry.amount || "0"}</td>
                         <td>${entry.type || "N/A"}</td>
@@ -180,4 +180,18 @@ overlay.addEventListener("click", () => {
 });
 cancelBtn.addEventListener("click", () => {
   closePopup();
+});
+
+const toggleButton = document.getElementById("darkmode-toggle");
+const body = document.body;
+
+toggleButton.addEventListener("click", () => {
+  body.classList.toggle("darkmode"); // Darkmode Klasse für das Body-Element umschalten
+
+  // Button-Text anpassen
+  if (body.classList.contains("darkmode")) {
+    toggleButton.textContent = "LIGHTMODE";
+  } else {
+    toggleButton.textContent = "DARKMODE";
+  }
 });

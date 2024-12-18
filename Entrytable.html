@@ -43,45 +43,38 @@
       <option value="Eingabe">Eingabe</option>
       <option value="Ausgabe">Ausgabe</option>
     </select>
+      <label for="filter">suche</label>
 
-    <select name="userFilter" id="userFilter">
-      <option value="userName1">user1</option>
-      <option value="userName2">user2</option>
-    </select>
+      <input type="text" id="search" placeholder="search..." />
+
+      <select name="typeFilter" id="typeFilter">
+        <option value="Eingabe">Eingabe</option>
+        <option value="Ausgabe">Ausgabe</option>
+      </select>
+
+      <select name="userFilter" id="userFilter">
+        <option value="userName1">user1</option>
+        <option value="userName2">user2</option>
+      </select>
+
+      <button id="newEntryBtn">Neuer Eintrag</button>
 
 
-
-    <button id="newEntryBtn">Neuer Eintrag</button>
-
-
-    <div class="table-container">
-    <table class="table table-striped table-hover" border="1" width="100%" id="dataTable">
-      <tr>
-        <th>Beschreibung</th>
-        <th>Betrag</th>
-        <th>Typ</th>
-        <th>Datum</th>
-        <th>Benutzer</th>
-        <th>Kategorie</th>
-      </tr>
-    </table>
-</div>
-</div>
-    <script>
-        const toggleButton = document.getElementById('darkmode-toggle');
-const body = document.body;
-
-toggleButton.addEventListener('click', () => {
-    body.classList.toggle('darkmode'); // Darkmode Klasse für das Body-Element umschalten
-
-    // Button-Text anpassen
-    if (body.classList.contains('darkmode')) {
-        toggleButton.textContent = 'LIGHTMODE';
-    } else {
-        toggleButton.textContent = 'DARKMODE';
-    }
-});
-</script>
+      <div class="table-container">
+        <table class="table table-striped table-hover" border="1" width="100%" id="dataTable">
+          <thread>
+            <tr>
+              <th>Beschreibung</th>
+              <th>Betrag</th>
+              <th>Typ</th>
+              <th>Datum</th>
+              <th>Benutzer</th>
+              <th>Kategorie</th>
+            </tr>
+          </thread>
+        </table>
+      </div>
+    </div>
 
     </table>
 
