@@ -47,12 +47,16 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <button>logout</button>
-    <button>Darkmode</button>
+    <button id="logout-btn">LOGOUT</button>
+    <button id="darkmode-toggle">DARKMODE</button>
 
     <h2>Einträge</h2>
 
-    <label for="filter">Suche</label>
+
+    <div class="entry-container">
+
+    <label for="filter">suche</label>
+
     <input type="text" id="search" placeholder="search..." />
 
     <select name="typeFilter" id="typeFilter">
@@ -65,9 +69,13 @@
       <option value="userName2">user2</option>
     </select>
 
+
+
     <button id="newEntryBtn">Neuer Eintrag</button>
 
-    <table border="1" width="100%">
+
+    <div class="table-container">
+    <table class="table table-striped table-hover" border="1" width="100%">
       <tr>
         <th>ID</th>
         <th>Beschreibung</th>
@@ -87,6 +95,25 @@
         <td></td>
         <td></td>
       </tr>
+    </table>
+</div>
+</div>
+    <script>
+        const toggleButton = document.getElementById('darkmode-toggle');
+const body = document.body;
+
+toggleButton.addEventListener('click', () => {
+    body.classList.toggle('darkmode'); // Darkmode Klasse für das Body-Element umschalten
+
+    // Button-Text anpassen
+    if (body.classList.contains('darkmode')) {
+        toggleButton.textContent = 'LIGHTMODE';
+    } else {
+        toggleButton.textContent = 'DARKMODE';
+    }
+});
+</script>
+
     </table>
 
     <!-- Overlay -->
