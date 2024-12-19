@@ -26,11 +26,11 @@
     <div class = "container">
        
       <h1>Haushaltskasse</h1>
-      <form>
-        <input id="" type="name" placeholder="NAME" required />
-        <input id="" type="email" placeholder="E-MAIL" required />
-        <input id="" type="password" placeholder="PASSWORT" required />
-        <button type="submit">REGISTRIEREN</button>
+      <form id="register-form">
+        <input id="registerName" type="name" placeholder="NAME" required />
+        <input id="registerEmail" type="email" placeholder="E-MAIL" required />
+        <input id="registerPassword" type="password" placeholder="PASSWORT" required />
+        <button id="register-btn" type="submit">REGISTRIEREN</button>
       </form>
       <div class="link-untertext">
         DU HAST EIN KONTO, DANN HIER
@@ -57,5 +57,6 @@ toggleButton.addEventListener('click', () => {
     }
 });
     </script>
+    <script type="module" src="register.js"></script>
   </body>
 </html>
