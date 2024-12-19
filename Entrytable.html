@@ -66,12 +66,12 @@
         <table class="table table-striped table-hover" border="1" width="100%" id="dataTable">
           <thread>
             <tr>
-              <th>Beschreibung</th>
-              <th>Betrag</th>
-              <th>Typ</th>
-              <th>Datum</th>
-              <th>Benutzer</th>
-              <th>Kategorie</th>
+                <th onclick="sortTable(0)">Beschreibung</th>
+                <th onclick="sortTable(1)">Betrag</th>
+                <th onclick="sortTable(2)">Typ</th>
+                <th onclick="sortTable(3)">Datum</th>
+                <th onclick="sortTable(4)">Benutzer</th>
+                <th onclick="sortTable(5)">Kategorie</th>
             </tr>
           </thread>
         </table>
@@ -128,6 +128,9 @@
     </footer>
     <script type="module" src="script.js"></script>
     <script type="module" src="logout.js"></script>
+
+    <script type="module" src="sort.js"></script>
+
 
 <!-- Suchfunktion -->
     <script>
