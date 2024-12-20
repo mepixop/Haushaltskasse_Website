@@ -10,11 +10,10 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>   
-    </header>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header></header>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -23,13 +22,17 @@
 
     <button id="darkmode-toggle" class="darkmode">DARKMODE</button>
 
-    <div class = "container">
-       
+    <div class="container">
       <h1>Haushaltskasse</h1>
       <form id="register-form">
         <input id="registerName" type="name" placeholder="NAME" required />
         <input id="registerEmail" type="email" placeholder="E-MAIL" required />
-        <input id="registerPassword" type="password" placeholder="PASSWORT" required />
+        <input
+          id="registerPassword"
+          type="password"
+          placeholder="PASSWORT"
+          required
+        />
         <button id="register-btn" type="submit">REGISTRIEREN</button>
       </form>
       <div class="link-untertext">
@@ -39,23 +42,23 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 Haushaltskasse. Alle Rechte vorbehalten.</p>
+      <p>&copy; 2024 Haushaltskasse. Alle Rechte vorbehalten.</p>
     </footer>
-    
+
     <script>
-        const toggleButton = document.getElementById('darkmode-toggle');
-const body = document.body;
+      const toggleButton = document.getElementById("darkmode-toggle");
+      const body = document.body;
 
-toggleButton.addEventListener('click', () => {
-    body.classList.toggle('darkmode'); // Darkmode Klasse für das Body-Element umschalten
+      toggleButton.addEventListener("click", () => {
+        body.classList.toggle("darkmode"); // Darkmode Klasse für das Body-Element umschalten
 
-    // Button-Text anpassen
-    if (body.classList.contains('darkmode')) {
-        toggleButton.textContent = 'LIGHTMODE';
-    } else {
-        toggleButton.textContent = 'DARKMODE';
-    }
-});
+        // Button-Text anpassen
+        if (body.classList.contains("darkmode")) {
+          toggleButton.textContent = "LIGHTMODE";
+        } else {
+          toggleButton.textContent = "DARKMODE";
+        }
+      });
     </script>
     <script type="module" src="register.js"></script>
   </body>

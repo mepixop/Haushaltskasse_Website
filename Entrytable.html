@@ -13,14 +13,18 @@
     />
     <link rel="stylesheet" href="style.css" />
 
-<!-- Icon Search -->
+    <!-- Icon Search -->
     <link
-  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-  rel="stylesheet"
-/>
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="logout.js"></script>
+    <script src="search.js"></script>
+    <script src="sort.js"></script>
     <!-- Bootstrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -33,51 +37,53 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
-    <header> 
-        <button id="logout-btn">LOGOUT</button>
-    <button id="darkmode-toggle">DARKMODE</button>  
+
+    <header>
+      <button id="logout-btn">LOGOUT</button>
+      <button id="darkmode-toggle">DARKMODE</button>
     </header>
-    
 
     <h2>Einträge</h2>
-
     <div class="entry-container">
+      <label for="filter"></label>
 
-    <label for="filter"></label>
+      <!-- Suchfeld mit Lupen-Icon -->
+      <div class="input-group">
+        <span class="input-group-text" id="search-icon">
+          <i class="bi bi-search"></i>
+          <!-- Bootstrap Icon -->
+        </span>
+        <input
+          type="text"
+          id="search"
+          class="form-control"
+          placeholder="Search..."
+          aria-describedby="search-icon"
+        />
+      </div>
 
-    <!-- Suchfeld mit Lupen-Icon -->
-<div class="input-group">
-  <span class="input-group-text" id="search-icon">
-    <i class="bi bi-search"></i> <!-- Bootstrap Icon -->
-  </span>
-  <input 
-    type="text" 
-    id="search" 
-    class="form-control" 
-    placeholder="Search..."
-    aria-describedby="search-icon"
-  />
-</div>
-
-    <button id="newEntryBtn">Neuer Eintrag</button>
-
+      <button id="newEntryBtn">Neuer Eintrag</button>
 
       <div class="table-container">
-        <table class="table table-striped table-hover" border="1" width="100%" id="dataTable">
+        <table
+          class="table table-striped table-hover"
+          border="1"
+          width="100%"
+          id="dataTable"
+        >
           <thread>
             <tr>
-                <th onclick="sortTable(0)">Beschreibung</th>
-                <th onclick="sortTable(1)">Betrag</th>
-                <th onclick="sortTable(2)">Typ</th>
-                <th onclick="sortTable(3)">Datum</th>
-                <th onclick="sortTable(4)">Benutzer</th>
-                <th onclick="sortTable(5)">Kategorie</th>
+              <th onclick="sortTable(0)">Beschreibung</th>
+              <th onclick="sortTable(1)">Betrag</th>
+              <th onclick="sortTable(2)">Typ</th>
+              <th onclick="sortTable(3)">Datum</th>
+              <th onclick="sortTable(4)">Benutzer</th>
+              <th onclick="sortTable(5)">Kategorie</th>
             </tr>
           </thread>
         </table>
       </div>
-  
-
+    </div>
 
     <!-- Overlay -->
     <div class="overlay" id="overlay"></div>
@@ -123,35 +129,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 Haushaltskasse. Alle Rechte vorbehalten.</p>
+      <p>&copy; 2024 Haushaltskasse. Alle Rechte vorbehalten.</p>
     </footer>
-    <script type="module" src="script.js"></script>
-    <script type="module" src="logout.js"></script>
-
-    <script type="module" src="sort.js"></script>
-
-
-<!-- Suchfunktion -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const searchInput = document.getElementById("search");
-          const table = document.getElementById("dataTable");
-          const tableRows = table.getElementsByTagName("tr");
-  
-          searchInput.addEventListener("keyup", function () {
-            const filter = searchInput.value.toLowerCase();
-            for (let i = 1; i < tableRows.length; i++) {
-              const row = tableRows[i];
-              let rowText = row.textContent.toLowerCase();
-              if (rowText.includes(filter)) {
-                row.style.display = "";
-              } else {
-                row.style.display = "none";
-              }
-            }
-          });
-        });
-      </script>
-
   </body>
 </html>

@@ -6,12 +6,11 @@ import {
   set,
   get,
   remove,
+  push,
 } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js";
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-const auth = getAuth(app);
 
 $(document).ready(() => {
   getEntry();
@@ -25,9 +24,6 @@ const cancelBtn = document.getElementById("cancelBtn");
 const saveButton = document.getElementById("saveButton");
 const deleteButton = document.getElementById("deleteButton");
 const entryForm = document.getElementById("entryForm");
-const table = document.querySelector("table");
-var url =
-  "https://haushaltskassewebsite-default-rtdb.europe-west1.firebasedatabase.app/entry.json";
 
 // Popup close
 const closePopup = () => {
@@ -50,7 +46,7 @@ var openPopup = (entry, id) => {
 
     saveButton.textContent = "Update";
     saveButton.onclick = () => {
-      changeEntry(id);
+      schangeEntry(id);
     };
 
     deleteButton.style.display = "inline-block";
@@ -75,21 +71,57 @@ var sendEntry = () => {
   const user = document.getElementById("benutzer").value;
   const kategorie = document.getElementById("kategorie").value;
 
-  $.ajax({
-    url: url,
-    type: "POST",
-    data: JSON.stringify({
-      description: description,
-      amount: amount,
-      type: typ,
-      date: date,
-      user: user,
-      category: kategorie,
-    }),
-    success: (res, status) => {
-      console.log(res);
-    },
-  });
+  const entryReferenze = ref(database, `entry`);
+  const newEntry = push(entryReferenze);
+  set(newEntry, {
+    description: description,
+    amount: amount,
+    type: typ,
+    date: date,
+    user: user,
+    category: kategorie,
+  })
+    .then(() => {
+      alert("Erfolgreich hinzugefügt!");
+    })
+    .catch((error) => {
+      alert("Fehler beim Hinzufügen");
+    });
+};
+
+//Get the data from firebase
+var getEntry = () => {
+  const entryReferenze = ref(database, `entry`);
+
+  get(entryReferenze)
+    .then((snapshot) => {
+      const data = snapshot.val();
+      populateTable(data);
+    })
+    .catch((error) => {
+      console.error("Fehler beim get", error);
+    });
+};
+
+//delete Data from firebase
+const deleteEntry = (id) => {
+  const deleteConfirm = confirm("Möchten Sie diesen Eintrag wirklich löschen?");
+  if (!deleteConfirm) {
+    return;
+  }
+
+  const entryReferenze = ref(database, `entry/${id}`);
+
+  remove(entryReferenze)
+    .then(() => {
+      alert("Eintrag  wurde gelöscht.");
+      getEntry();
+      closePopup();
+    })
+    .catch((error) => {
+      alert("Eintrag konnte nicht gelöscht werden.");
+      console.error("Fehler beim löschen", error);
+    });
 };
 
 //fill data into table
@@ -116,46 +148,6 @@ var populateTable = (entries) => {
     const entry = entries[id];
     openPopup(entry, id);
   });
-};
-
-//Get the data from firebase
-var getEntry = () => {
-  $.ajax({
-    url: url,
-    type: "GET",
-    success: (data) => {
-      populateTable(data);
-    },
-    error: (xhr, status, error) => {
-      console.error("Fehler beim Abrufen der Einträge:", error);
-    },
-  });
-};
-
-//delete Data from firebase
-const deleteEntry = (id) => {
-  if (!id) {
-    console.error("No ID provided for deletion");
-    return;
-  }
-  const confirmDelete = confirm("Möchten Sie diesen Eintrag wirklich löschen?");
-  if (!confirmDelete) {
-    return;
-  }
-
-  const entryRef = ref(database, `entry/${id}`);
-
-  set(entryRef, null)
-    .then(() => {
-      console.log(`Entry with ID ${id} successfully deleted.`);
-      alert("Eintrag wurde gelöscht.");
-      getEntry();
-      closePopup();
-    })
-    .catch((error) => {
-      console.error("Fehler beim Löschen des Eintrags:", error);
-      alert("Eintrag konnte nicht gelöscht werden.");
-    });
 };
 
 //ALL EVENT LISTENERS
